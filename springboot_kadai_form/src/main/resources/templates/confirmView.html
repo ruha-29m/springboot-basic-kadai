@@ -1,0 +1,35 @@
+<!DOCTYPE html><!--確認画面の表示内容を定義する-->
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>確認画面</title>
+</head>
+<body>
+    <h2>入力内容をご確認ください。</h2>
+    <table border="1">
+        <label>項目</label>
+		<label>入力内容</label>
+		    <tr>
+				              
+				<th>お名前</th>
+				<td th:text="${contactForm.name}"></td>
+				
+                <tr>メールアドレス</tr>
+				<td th:text="${contactForm.email}"></td>
+				
+                <tr>お問い合わせ内容</tr>	
+				<td th:text="${contactForm.message}"></td>
+				
+				</tr>
+		</thead>
+    </table>
+</body>
+</html>
+<!--確認画面の表示内容を定義する
+	フォーム・確認画面への各リクエストに応じて、適切なビューを表示。バリデーション結果に応じて、表示内容を切り替える必要がある。
+	<tr th:each="form : {}"></tr>	
+	お問い合わせ内容				rows="10"（縦幅10文字）
+	（message）		textarea	cols="30"（横幅30文字）
+	未入力であればNG
+-->
