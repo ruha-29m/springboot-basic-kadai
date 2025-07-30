@@ -10,29 +10,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.spring_kadai_form.form.ContactForm;
 
 @Controller
 public class ContactFormController {
-
-	@GetMapping("/contact")
-	public String ContactForm(Model model) {
+	//お問い合わせフォームの初期表示 (GETリクエスト)
+	@GetMapping("/contact")//URL
+	public String Form(Model model) {
 		if (!model.containsAttribute("contactForm")) {
 			model.addAttribute("contactForm", new ContactForm());
 		}
 		return "contactFormView";
 	}
+	
 
+	//お問い合わせフォームの送信処理 (POSTリクエスト)
 	@PostMapping("/contact")// バリデーションエラーがある場合は入力フォームへ
-	public String confirm(@Valid ContactForm contactForm, BindingResult bindingResult, Model model) {
+	public String confirm(@ModelAttribute @Valid ContactForm contactForm, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-		return "contactFormView";
+			return "contactFormView";
 	}
 		// バリデーションOK時は確認画面へ
 		model.addAttribute("contactForm", contactForm);
-		return "confirm";
+		return "confirmView";
 	}
 }
 

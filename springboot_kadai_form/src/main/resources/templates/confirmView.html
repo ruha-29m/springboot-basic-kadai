@@ -1,28 +1,35 @@
-<!DOCTYPE html><!--確認画面の表示内容を定義する-->
+<!DOCTYPE html><!--確認画面の表示内容を定義する 確認画面（/confirm)-->
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <title>確認画面</title>
+	<meta name="viewport" contact="width=device-width, initial-scale=1">
+    <title>入力内容の確認</title>
 </head>
 <body>
     <h2>入力内容をご確認ください。</h2>
     <table border="1">
-        <label>項目</label>
-		<label>入力内容</label>
-		    <tr>
-				              
-				<th>お名前</th>
+        <thead>
+			<tr>
+				<th>項目</th>
+				<th>入力内容</th>
+		    </tr>
+		</thead>	
+		<tbody>
+			<tr>	              
+				<td>お名前</td>
 				<td th:text="${contactForm.name}"></td>
-				
-                <tr>メールアドレス</tr>
+			</tr>
+			<tr>	
+                <td>メールアドレス</td>
 				<td th:text="${contactForm.email}"></td>
-				
-                <tr>お問い合わせ内容</tr>	
+			</tr>
+			<tr>	
+                <td>お問い合わせ内容</td>	
 				<td th:text="${contactForm.message}"></td>
-				
-				</tr>
-		</thead>
+			</tr>
+			<tbody>
+		
     </table>
 </body>
 </html>
