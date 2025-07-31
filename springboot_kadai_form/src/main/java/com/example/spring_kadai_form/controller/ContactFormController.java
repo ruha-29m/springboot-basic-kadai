@@ -23,7 +23,7 @@ public class ContactFormController {
 		if (!model.containsAttribute("contactForm")) {
 			model.addAttribute("contactForm", new ContactForm());
 		}
-		return "contactFormView";
+		return "redirect:contactFormView";
 	}
 	
 
