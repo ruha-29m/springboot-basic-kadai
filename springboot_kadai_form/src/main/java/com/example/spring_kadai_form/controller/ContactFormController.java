@@ -23,7 +23,7 @@ public class ContactFormController {
 		if (!model.containsAttribute("contactForm")) {
 			model.addAttribute("contactForm", new ContactForm());
 		}
-		return "redirect:contactFormView";
+		return "contactFormView";
 	}
 	
 
@@ -31,7 +31,7 @@ public class ContactFormController {
 	@PostMapping("/contact")// バリデーションエラーがある場合は入力フォームへ
 	public String confirm(@ModelAttribute @Valid ContactForm contactForm, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			return "contactFormView";
+			return "redirect:contactFormView";
 	}
 		// バリデーションOK時は確認画面へ
 		model.addAttribute("contactForm", contactForm);
