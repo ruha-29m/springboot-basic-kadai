@@ -12,13 +12,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.spring_kadai_form.form.ContactForm;
 
 @Controller
 public class ContactFormController {
 	//お問い合わせフォームの初期表示 (GETリクエスト)
-	@GetMapping("/contact")//URL
+	@GetMapping("/form")//URL
 	public String Form(Model model) {
 		if (!model.containsAttribute("contactForm")) {
 			model.addAttribute("contactForm", new ContactForm());
@@ -28,10 +29,13 @@ public class ContactFormController {
 	
 
 	//お問い合わせフォームの送信処理 (POSTリクエスト)
-	@PostMapping("/contact")// バリデーションエラーがある場合は入力フォームへ
-	public String confirm(@ModelAttribute @Valid ContactForm contactForm, BindingResult bindingResult, Model model) {
+	@PostMapping("/confirm")// バリデーションエラーがある場合は入力フォームへ
+	public String confirm(@ModelAttribute @Valid ContactForm contactForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 		if (bindingResult.hasErrors()) {
-			return "redirect:contactFormView";
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.contactForm", bindingResult);
+	        redirectAttributes.addFlashAttribute("contactForm", contactForm);
+			return "redirect:/form";
+			
 	}
 		// バリデーションOK時は確認画面へ
 		model.addAttribute("contactForm", contactForm);
