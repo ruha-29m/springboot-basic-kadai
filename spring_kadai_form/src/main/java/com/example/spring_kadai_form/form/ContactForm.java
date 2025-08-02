@@ -23,14 +23,4 @@ import lombok.Data;
 	    private String message;
 	}
 
-
-
-/*
- * 名前
-（name）	input	type="text"	未入力であればNG
-メールアドレス
-（email）	input	type="text"	未入力であればNG／メールアドレス形式でなければNG
-お問い合わせ内容
-（message）	textarea	cols="30"（横幅30文字）
-rows="10"（縦幅10文字）	未入力であればNG*/
  
